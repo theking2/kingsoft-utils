@@ -17,7 +17,7 @@
         },
         "files": [
             "src/utils.php",
-            "src/web.php",
+            "src/web.php"
         ]
     }
 }
