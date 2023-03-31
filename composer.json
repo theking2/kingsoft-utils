@@ -1,0 +1,23 @@
+{
+    "name": "kingsoft/utils",
+    "description": "General Utils",
+    "type": "library",
+    "license": "mit",
+    "authors": [
+        {
+            "name": "theking2",
+            "email": "theking2@king.ma"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Kingsoft\\Utils\\": "src/"
+        },
+        "files": [
+            "src/utils.php",
+            "src/web.php",
+        ]
+    }
+}
