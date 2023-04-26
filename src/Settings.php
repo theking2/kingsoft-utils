@@ -2,7 +2,7 @@
 namespace Kingsoft\Utils;
 
 if(!defined('SETTINGS_FILE')) {
-  define('SETTINGS_FILE', $_SERVER('DOCUMENT_ROOT') . '/settings.ini');
+  define('SETTINGS_FILE', $_SERVER['DOCUMENT_ROOT'] . '/settings.ini');
 };
 
 class Settings{
