@@ -2,7 +2,7 @@
 
 namespace Kingsoft\Utils;
 /**
- * use {$_c('defined')} to interpolate constants
+ * use {$_c('defined')} to interpolate constants ( Example "Debug is: {$_c('DEBUG')}\n" )
  */
 $_c = 'constant';
 
@@ -103,7 +103,7 @@ function format_amount($value): string
  * @param string $record_seperator 
  * @return int characters written
  */
-function dwh_fputcsv( $handle, $fields, $delimiter = ",", $enclosure = '"', $escape_char = "\\", $record_seperator = "\r\n" ) {
+function fputcsv( $handle, $fields, $delimiter = ",", $enclosure = '"', $escape_char = "\\", $record_seperator = "\r\n" ) {
 	$result = [];
 	foreach( $fields as $field ) {
 		$result[] = $enclosure . str_replace($enclosure, $escape_char . $enclosure, $field) . $enclosure;
@@ -111,38 +111,6 @@ function dwh_fputcsv( $handle, $fields, $delimiter = ",", $enclosure = '"', $esc
 	return fwrite( $handle, implode( $delimiter, $result ) );
 }
 
-/**
- * Wrap a text in a tag
- * @param string $tag Tag to wrap arount text
- * @param string $text Text to wrap tag around
- * @param ?string $class optional class or classes string
- * @param ?string $id optional id string
- */
-function wrap_tag( string $tag, string $text, ?string $class = null, ?string $id = null ) {
-	return "<$tag" .
-		// if class is set include a class="" section
-		( $class ? " class=\"$class\"" : '' ) .
-
-		// if id is set include a id="" section
-		( $id    ? " id=\"$id\"" : '' ) .
-
-		">$text</$tag>";
-}
-
-/**
- * Create option entry setting the selected value
- *
- * @param string $text Text to display
- * @param string $value the value attribute of the option
- * @param string $var The variable holding $value to test the selection
- * @return string
- */
-function option_tag( string $text, mixed $value, string $var ): string {
-	return '<option ' . 
-		// set attribute selected when $var has value $value
-		( ( $var==$value )? 'selected ': '' ) . 
-		'value="' . $value . '">' . $text . PHP_EOL;
-}
 /**
  * get array value if key exist otherwise default
  * @param string $key needle
@@ -154,29 +122,37 @@ function array_value( string $key, string $array, ?string $default = '' ):string
 }
 
 /**
- * Method kebabToPascal
+ * Convert kebab-case to PascalCase
+ * @param string $str
+ * @return string
  */
 function kebabToPascal( string $str ): string {
 	return str_replace( ' ', '', ucwords( str_replace( '-', ' ', $str ) ) );
 }
 
 /**
-* convert snake_case to PascalCase
-*/
+ * Convert snake_case to PascalCase
+ * @param string $str
+ * @return string
+ */
 function snakeToPascal( string $str ): string {
 	return str_replace (' ', '', ucwords( str_replace( '_', ' ', $str ) ) );
 }
 
 /**
-* convert snake_case to camelCase
-*/
+ * Convert snake_case to camelCase
+ * @param string $str
+ * @return string
+ */
 function snakeToCamel( string $str ): string {
 	return lcfirst( snakeToPascal( $str ) );
 }
 
 /**
-* convert kebab-case to camelCase
-*/
+ * Convert kebab-case to camelCase
+ * @param string $str
+ * @return string
+ */
 function kebabToCamel( string $str): string {
 	return lcfirst( kebabToPascal( $str ) );
 }
