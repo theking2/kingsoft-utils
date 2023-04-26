@@ -7,7 +7,6 @@ namespace Kingsoft\Utils;
  * @param  array $params this params should be in the $_REQUEST
  * @return bool true when all params are in $_REQUEST
  */
- */
 function check_request_params( array $params ) : bool
 {
 	$params_check = array_intersect(array_keys($_REQUEST),$params);
