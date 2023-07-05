@@ -12,12 +12,12 @@
     "minimum-stability": "dev",
     "require": {},
     "autoload": {
-        "psr-4": {
-            "Kingsoft\\Utils\\": "src/"
-        },
+
         "files": [
-            "src/utils.php",
-            "src/web.php"
+            "utils.php",
+            "web.php",
+            "settings.php",
+            "all.php"
         ]
     }
 }

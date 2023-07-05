@@ -2,9 +2,9 @@
 
 namespace Kingsoft\Utils;
 /**
- * use {$_c('defined')} to interpolate constants ( Example "Debug is: {$_c('DEBUG')}\n" )
+ * use {$_const('DEFINED')} to interpolate constants ( Example "Debug is: {$_const('DEBUG')}\n" )
  */
-$_c = 'constant';
+$__const = 'constant';
 
 /**
  * Are we in debug mode?
