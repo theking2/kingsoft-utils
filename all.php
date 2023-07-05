@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
 
-require 'Settings.php';
+require 'settings.php';
 require 'utils.php';
 require 'web.php';

@@ -45,14 +45,14 @@ function base64url_decode( $data ) : string
 function wrap_tag( string $tag, string $text, ?string $class = null, ?string $id = null ): string
 {
 	return 
-		'<$tag' .
+		"<$tag" .
 		// if class is set include a class="" section
-		( $class ? ' class="$class"' : '' ) .
+		( $class ? " class=\"$class\"" : '' ) .
 
 		// if id is set include a id="" section
-		( $id    ? ' id="$id"' : '' ) .
+		( $id    ? " id=\"$id\"" : '' ) .
 
-		'>$text</$tag>';
+		">$text</$tag>";
 }
 
 /**
