@@ -10,14 +10,5 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
-    "autoload": {
-
-        "files": [
-            "utils.php",
-            "web.php",
-            "settings.php",
-            "all.php"
-        ]
-    }
+    "require": {}
 }
