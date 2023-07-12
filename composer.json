@@ -1,6 +1,6 @@
 {
     "name": "kingsoft/utils",
-    "description": "General Utils",
+    "description": "General and easy to use utility functions for PHP. Used in many other Kingsoft packages.",
     "type": "library",
     "license": "mit",
     "authors": [
