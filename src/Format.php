@@ -155,7 +155,7 @@ class Format
 	 */
 	public static function snakeToCamel( string $str ): string
 	{
-		return lcfirst( snakeToPascal( $str ) );
+		return lcfirst( self::snakeToPascal( $str ) );
 	}
 
 	/**
@@ -165,7 +165,7 @@ class Format
 	 */
 	public static function kebabToCamel( string $str ): string
 	{
-		return lcfirst( kebabToPascal( $str ) );
+		return lcfirst( self::kebabToPascal( $str ) );
 	}
 
 }
