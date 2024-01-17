@@ -3,6 +3,11 @@
     "description": "General and easy to use utility functions for PHP. Used in many other Kingsoft packages.",
     "type": "library",
     "license": "mit",
+    "autoload": {
+        "psr-4": {
+            "Kingsoft\\Utils\\": "src/"
+        }
+    },    
     "authors": [
         {
             "name": "theking2",
