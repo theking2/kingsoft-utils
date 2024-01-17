@@ -2,7 +2,6 @@
 
 namespace Kingsoft\Utils;
 
-define( 'DEBUG', strpos( $_SERVER['SERVER_NAME'], 'localhost' ) !== false );
 class Format
 {
 	/**
@@ -10,9 +9,6 @@ class Format
 	 */
 	public static $__const = 'constant';
 
-	/**
-	 * Are we in debug mode?
-	 */
 
 	/**
 	 * calculate difference in procent
@@ -107,7 +103,7 @@ class Format
 	 * @return int characters written
 	 */
 	public static function fputcsv(
-	  $handle,
+		$handle,
 		array $fields,
 		string $delimiter = ",",
 		string $enclosure = '"',
