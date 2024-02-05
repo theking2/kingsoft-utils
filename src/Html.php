@@ -7,13 +7,16 @@ class Html
   /**
    * check_params
    *
-   * @param  array $params this params should be in the $_REQUEST
+   * @param  array $params this params should be in the $_REQUEST. Side effect: dies if you want so
+   * @param bool $die will die if condition not met
    * @return bool true when all params are in $_REQUEST
    */
-  static public function check_request_params( array $params ): bool
+  static public function check_request_params( array $params, ?bool $die = true ): bool
   {
     $params_check = array_intersect( array_keys( $_REQUEST ), $params );
-    return count( $params_check ) !== count( $params );
+    $result = count( $params_check ) !== count( $params );
+    if($die and !$result) die();
+    return $result;
   }
 
   /**
