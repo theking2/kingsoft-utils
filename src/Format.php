@@ -5,12 +5,6 @@ namespace Kingsoft\Utils;
 class Format
 {
 	/**
-	 * use {$_const('DEFINED')} to interpolate constants ( Example "Debug is: {$_const('DEBUG')}\n" )
-	 */
-	public static $__const = 'constant';
-
-
-	/**
 	 * calculate difference in procent
 	 * @param float $a numerator
 	 * @param float $b denominator 

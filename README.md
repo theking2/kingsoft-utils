@@ -4,9 +4,9 @@ Currently two classes:
  * Html for some handy web page functions like wrap_tag and check_request_params
 
 ## bootstrap
-Load SETTINGS with
+Define the `SETTINGS` constant with
 ```php
-require $_SERVER['DOCUMENT_ROOT'] . '/vendor/kingsoft/utils/settings.inc.php';
+require __DIR__ . '/vendor/kingsoft/utils/settings.inc.php';
 ```
 
 Prior Set `SETTINGS_FILE` to something else than settings.ini if you want.
