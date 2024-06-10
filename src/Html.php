@@ -6,10 +6,8 @@ class Html
 {
   /**
    * check_params
-   *
-   * @param  array $params this params should be in the $_REQUEST. Side effect: dies if you want so
-   * @param bool $die will die if condition not met
-   * @return bool false when all params are in $_REQUEST
+   * @deprecated version 1.1.0
+   * Use checkParams instead
    */
   static public function check_request_params( array $params, ?bool $die = true ): bool
   {
@@ -92,10 +90,9 @@ class Html
   /**
    * Create option entry setting the selected value
    *
-   * @param string $text Text to display
-   * @param string $value the value attribute of the option
-   * @param string $var The variable holding $value to test the selection
-   * @return string
+   * @param $text Text to display
+   * @param $value the value attribute of the option
+   * @param $var The variable holding $value to test the selection
    */
   static public function option_tag( string $text, mixed $value, string $var ): string
   {

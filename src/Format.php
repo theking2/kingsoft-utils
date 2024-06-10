@@ -41,10 +41,9 @@ class Format
 	}
 	/**
 	 * format a percent float
-	 * @param float $value - value to convert
-	 * @return string
+	 * @param $value - value to convert
 	 */
-	public static function percent( float $value ): string
+	public static function percent( mixed $value ): string
 	{
 		return is_numeric( $value )
 			? number_format( $value, 1, '.', "’" ) . '%'
@@ -52,10 +51,9 @@ class Format
 	}
 	/**
 	 * format a percent float
-	 * @param float $value - value to convert
-	 * @return string
+	 * @param $value - value to convert
 	 */
-	public static function percentz( $value ): string
+	public static function percentz( mixed $value ): string
 	{
 		return is_numeric( $value )
 			? number_format( $value, 1, '.', "’" ) . '%'
@@ -63,8 +61,7 @@ class Format
 	}
 	/**
 	 * format a liter float
-	 * @param float $value - value to convert
-	 * @return string
+	 * @param $value - value to convert
 	 */
 	public static function liter( float $value ): string
 	{
@@ -74,10 +71,9 @@ class Format
 	}
 	/**
 	 * format a amount float/integer, floats get one decimal
-	 * @param float $value - value to convert
-	 * @return string
+	 * @param $value - value to convert
 	 */
-	public static function amount( $value ): string
+	public static function amount( float $value ): string
 	{
 		return is_float( $value )
 			? number_format( $value, 1, '.', "’" )
@@ -89,12 +85,11 @@ class Format
 	/**
 	 * Custom fputcsv
 	 * @param resource $handle filehandle
-	 * @param mixed[] $fields array of values to write
-	 * @param string $delimiter field delimiter
-	 * @param string $enclosure field enclosures
-	 * @param string $escape_char escape enclosure chars in fields
-	 * @param string $record_seperator 
-	 * @return int characters written
+	 * @param $fields array of values to write
+	 * @param $delimiter field delimiter
+	 * @param $enclosure field enclosures
+	 * @param $escape_char escape enclosure chars in fields
+	 * @param $record_seperator 
 	 */
 	public static function fputcsv(
 		$handle,
@@ -113,13 +108,13 @@ class Format
 
 	/**
 	 * get array value if key exist otherwise default
-	 * @param string $key needle
-	 * @param mixed[] $array haystack
-	 * @param mixed $default value if needle not found
+	 * @param $needle
+	 * @param $haystack
+	 * @param $default value if needle not found
 	 */
-	public static function array_value( string $key, string $array, ?string $default = '' ): string
+	public static function array_value( string $needle, array $haystack, ?string $default = '' ): string
 	{
-		return $array[ $key ] ?? $default;
+		return $haystack[ $needle ] ?? $default;
 	}
 
 	/**
