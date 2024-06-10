@@ -9,16 +9,47 @@ class Html
    *
    * @param  array $params this params should be in the $_REQUEST. Side effect: dies if you want so
    * @param bool $die will die if condition not met
-   * @return bool true when all params are in $_REQUEST
+   * @return bool false when all params are in $_REQUEST
    */
   static public function check_request_params( array $params, ?bool $die = true ): bool
   {
     $params_check = array_intersect( array_keys( $_REQUEST ), $params );
-    $result = count( $params_check ) !== count( $params );
-    if($die and !$result) die();
+    $result       = count( $params_check ) !== count( $params );
+    if( $die and !$result )
+      trigger_error( "wrong number of parameters", E_USER_ERROR );
     return $result;
   }
 
+  /**
+   * checkParams
+   *
+   * @param $required this params should be in the $request. Side effect: dies with trigger_error
+   * @param $request the request to test ($_POST, $_GET, $_REQUEST)
+   * @param $exact true if a exact parameter match
+   * @param $die die if wrong number
+
+   */
+  static public function checkParams( array $required, array $request, ?bool $exact = true, bool $die = true ): bool
+  {
+    $check_count_exact = fn( $required, $intersect ) => ( count( $required ) === count( $intersect ) );
+    $check_count       = fn( $required, $intersect ) => ( count( $required ) <= count( $intersect ) );
+
+    $intersect = array_intersect( array_keys( $request ), $required );
+    if( !$die ) {
+      return $exact && $check_count_exact( $required, $intersect ) ||
+        $check_count( $required, $intersect );
+    }
+    if( $exact && !$check_count_exact( $required, $intersect ) ) {
+      http_response_code( 403 );
+      trigger_error( "Request incomplete", E_USER_ERROR );
+    }
+    // not exact but check if parameters are required
+    if( $check_count( $required, $intersect ) ) {
+      http_response_code( 403 );
+      trigger_error( "Request incomplete", E_USER_ERROR );
+    }
+    return true;
+  }
   /**
    * convert bin to url friendly base64
    * translating + to - and / to _
