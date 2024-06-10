@@ -39,15 +39,12 @@ class Html
       return $exact && $check_count_exact( $required, $intersect ) ||
         $check_count( $required, $intersect );
     }
-    if( $exact && !$check_count_exact( $required, $intersect ) ) {
+    if( ( $exact && !$check_count_exact( $required, $intersect ) ) ||
+      !$check_count( $required, $intersect ) ) {
       http_response_code( 403 );
       trigger_error( "Request incomplete", E_USER_ERROR );
     }
-    // not exact but check if parameters are required
-    if( $check_count( $required, $intersect ) ) {
-      http_response_code( 403 );
-      trigger_error( "Request incomplete", E_USER_ERROR );
-    }
+
     return true;
   }
   /**
