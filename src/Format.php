@@ -157,4 +157,28 @@ class Format
 		return lcfirst( self::kebabToPascal( $str ) );
 	}
 
+	/**
+	 * Loads and processes a file.
+	 *
+	 * This function reads a file and performs string expansion on placeholders.
+	 * Placeholders in the format of $variableName within the SQL file are replaced
+	 * with their corresponding values from the $variables map or $GLOBALS.
+	 *
+	 */
+	static function load_parse_file( string $file, array $variables = null ): string
+	{
+		$variables ??= $GLOBALS;
+		if( !file_exists( $file ) ) {
+			throw new \InvalidArgumentException( "File not found: $file" );
+		}
+		$data = file_get_contents( $file );
+		// /\$[a-zA-Z_]\w*|\{\$[a-zA-Z_]\w*\}|\{\$this->\w+\}/g
+		return preg_replace_callback( '/\$([a-zA-Z_]\w*)|(\{\$[a-zA-Z_]\w*\}|\{\$this->\w+\})/',
+			fn( $matches ) =>
+			array_key_exists( $matches[ 1 ], $variables )
+				? $variables[ $matches[ 1 ] ]
+				: throw new \InvalidArgumentException( "Variable not found: {$matches[ 1 ]}" ),
+			$data
+		);
+	}
 }

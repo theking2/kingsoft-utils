@@ -86,5 +86,17 @@ class FormatTest extends \PHPUnit\Framework\TestCase
       Format::kebabToCamel( 'kebab-to-camel' )
     );
   }
+  public function test_load_parse_file() {
+    $this->assertEquals(
+      'Hello World',
+      Format::load_parse_file( 'tests/test-file.txt', ['name' => 'World'])
+    );
+    $this->expectException( \InvalidArgumentException::class );
+    $this->assertEquals(
+      'Hello World',
+      Format::load_parse_file( 'tests/test-file.txt')
+    );
+  }
 
 }
+
