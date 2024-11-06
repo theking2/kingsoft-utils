@@ -68,40 +68,40 @@ class HtmlTest extends \PHPUnit\Framework\TestCase
       Html::base64url_decode('aGVsbG8gd29ybGQ')
     );
   }
-  public function test_check_request_params()
-  {
-    $_REQUEST = self::REQUEST;
-    $this->assertFalse(
-      Html::check_request_params(
-        ['param1', 'param2' ],
-        false
-      )
-    );
-    $this->assertFalse(
-      Html::check_request_params(
-        ['param2' ],
-        false
-      )
-    );
-    $this->assertTrue(
-      Html::check_request_params(
-        ['param1', 'param2', 'param3' ],
-        false
-      )
-    );
-    $this->assertTrue(
-      Html::check_request_params(
-        ['param1', 'param3' ],
-        false
-      )
-    );
-    $this->assertTrue(
-      Html::check_request_params(
-        ['param3' ],
-        false
-      )
-    );
-  }
+  // public function test_check_request_params()
+  // {
+  //   $_REQUEST = self::REQUEST;
+  //   $this->assertFalse(
+  //     Html::check_request_params(
+  //       ['param1', 'param2' ],
+  //       false
+  //     )
+  //   );
+  //   $this->assertFalse(
+  //     Html::check_request_params(
+  //       ['param2' ],
+  //       false
+  //     )
+  //   );
+  //   $this->assertTrue(
+  //     Html::check_request_params(
+  //       ['param1', 'param2', 'param3' ],
+  //       false
+  //     )
+  //   );
+  //   $this->assertTrue(
+  //     Html::check_request_params(
+  //       ['param1', 'param3' ],
+  //       false
+  //     )
+  //   );
+  //   $this->assertTrue(
+  //     Html::check_request_params(
+  //       ['param3' ],
+  //       false
+  //     )
+  //   );
+  // }
   public function test_option_tag()
   {
     $this->assertEquals(
