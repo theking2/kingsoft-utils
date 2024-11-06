@@ -2,10 +2,17 @@
 
 namespace Kingsoft\Utils;
 
+if( !defined( 'DEBUG' ) ) {
+  define( 'DEBUG', true );
+}
+
 class Html
 {
+
+  // MARK: - param
+
   /**
-   * check_params
+   * Check if all required parameters are set
    * @deprecated version 1.1.0
    * Use checkParams instead
    */
@@ -19,7 +26,7 @@ class Html
   }
 
   /**
-   * checkParams
+   * Check if all required parameters are set
    *
    * @param $required this params should be in the $request. Side effect: dies with trigger_error
    * @param $request the request to test ($_POST, $_GET, $_REQUEST)
@@ -45,11 +52,13 @@ class Html
 
     return true;
   }
+
+  // MARK: - Encoding
+
   /**
    * convert bin to url friendly base64
    * translating + to - and / to _
-   * @param string $data
-   * @return string
+   * @param $data
    */
   static public function base64url_encode( $data ): string
   {
@@ -58,21 +67,19 @@ class Html
   /**
    * convert url friendly base64 to bin
    * translating - to + and _ to /
-   * @param string $data
-   * @return string
    */
   static public function base64url_decode( $data ): string
   {
     return base64_decode( strtr( $data, '-_', '+/' ) . str_repeat( '=', 3 - ( 3 + strlen( $data ) ) % 4 ) );
   }
 
+  // MARK: - Wrappers
   /**
    * Wrap a text in a tag
-   * @param string $tag Tag to wrap arount text
-   * @param string $text Text to wrap tag around
-   * @param ?string $class optional class or classes string
-   * @param ?string $id optional id string
-   * @return string
+   * @param $tag Tag to wrap arount text
+   * @param $text Text to wrap tag around
+   * @param $class optional class or classes string
+   * @param $id optional id string
    */
   static public function wrap_tag( string $tag, string $text, ?string $class = null, ?string $id = null ): string
   {
@@ -89,10 +96,6 @@ class Html
 
   /**
    * Create option entry setting the selected value
-   *
-   * @param $text Text to display
-   * @param $value the value attribute of the option
-   * @param $var The variable holding $value to test the selection
    */
   static public function option_tag( string $text, mixed $value, string $var ): string
   {
@@ -104,4 +107,21 @@ class Html
       '</option>' . PHP_EOL;
   }
 
+  // MARK: - Session
+
+  static public function setSession(): void
+  {
+    if( !defined( 'NO_SESSION' ) ) {
+
+      session_start( [ 
+        'name' => DEBUG ? 'SessionId' : '__Secure-SessionId',
+        'cookie_lifetime' => 0,
+        'cookie_path' => '/',
+        'cookie_secure' => true,
+        'cookie_httponly' => true,
+        'cookie_samesite' => 'Strict',
+        'referer_check' => $_SERVER['HTTP_HOST'],
+      ] );
+    }
+  }
 }
